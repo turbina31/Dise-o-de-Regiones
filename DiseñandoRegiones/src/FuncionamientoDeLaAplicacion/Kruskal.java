@@ -34,8 +34,8 @@ public class Kruskal {
 
         // 5. Recorrer las aristas ordenadas
         for (Arista<T> arista : aristas) {
-            int u = indice.get(arista.getOrigen());
-            int v = indice.get(arista.getDestino());
+            int u = indice.get(arista. obtenerOrigen());
+            int v = indice.get(arista. obtenerDestino());
 
             // Si no están en el mismo conjunto → no forma ciclo
             if (!uf.find(u, v)) {
@@ -66,9 +66,9 @@ public class Kruskal {
         for (T vertice : grafo.vertices()) {
             for (Arista<T> a : grafo.obtenerAdyacentes(vertice)) {
 
-                String clave = a.getOrigen().toString().compareTo(a.getDestino().toString()) < 0
-                        ? a.getOrigen() + "|" + a.getDestino()
-                        : a.getDestino() + "|" + a.getOrigen();
+                String clave = a. obtenerOrigen().toString().compareTo(a. obtenerDestino().toString()) < 0
+                        ? a. obtenerOrigen() + "|" + a. obtenerDestino()
+                        : a. obtenerDestino() + "|" + a. obtenerOrigen();
 
                 if (!vistas.contains(clave)) {
                     vistas.add(clave);
@@ -85,7 +85,7 @@ public class Kruskal {
     public static <T> double pesoTotal(Grafo<T> grafo) {
         double total = 0;
         for (Arista<T> a : ejecutar(grafo)) {
-            total += a.getPeso();
+            total += a. obtenerPeso();
         }
         return total;
     }
