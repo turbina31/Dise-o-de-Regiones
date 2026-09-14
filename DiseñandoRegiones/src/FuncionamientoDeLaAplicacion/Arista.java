@@ -15,17 +15,17 @@ public class Arista<T> implements Comparable<Arista<T>>
         this.peso = peso;
     }
 
-    public T getOrigen()
+    public T  obtenerOrigen()
     {
         return origen;
     }
 
-    public T getDestino()
+    public T  obtenerDestino()
     {
         return destino;
     }
 
-    public double getPeso()
+    public double  obtenerPeso()
     {
         return peso;
     }
