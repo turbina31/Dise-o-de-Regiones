@@ -30,7 +30,7 @@ public class Grafo<T> {
         // Eliminamos el vertice de las listas de vecinos de los demas
         for (Arista<T> otro : adyacencia.get(vertice))
         {
-        	if (otro.getDestino().equals(vertice)) {
+        	if (otro.obtenerDestino().equals(vertice)) {
         		adyacencia.get(otro).remove(vertice);
         	}
         }
@@ -59,7 +59,6 @@ public class Grafo<T> {
         
         adyacencia.get(origen).add(new Arista<>(origen, destino, peso));
         
-        //adyacencia.get(v2).add(v1);
     }
 
     public List<Arista<T>> obtenerAdyacentes(T vertice) {
@@ -100,7 +99,7 @@ public class Grafo<T> {
         verificarVertice(vertice);
         Set<T> resultado = new HashSet<>();
         for (Arista<T> t : adyacencia.get(vertice)) {
-			resultado.add(t.getDestino());
+			resultado.add(t.obtenerDestino());
 		}
         return Collections.unmodifiableSet(resultado);
     }
