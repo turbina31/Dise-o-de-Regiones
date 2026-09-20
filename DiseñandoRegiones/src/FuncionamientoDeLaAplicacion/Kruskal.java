@@ -10,13 +10,16 @@ import java.util.Set;
 
 public class Kruskal {
 	public static <T> List<Arista<T>> ejecutar(Grafo<T> grafo) {
-
+		int tamanio = grafo.tamanio();
+		List<Arista<T>> ET = new ArrayList<>();
+		int i = 0;
+		
         // 1. Obtener todos los vértices y asignarles un índice
         List<T> vertices = new ArrayList<>(grafo.vertices());
         Map<T, Integer> indice = new HashMap<>();
 
-        for (int i = 0; i < vertices.size(); i++) {
-            indice.put(vertices.get(i), i);
+        for (int k = 0; k < vertices.size(); k++) {
+            indice.put(vertices.get(k), k);
         }
 
         int n = vertices.size();
@@ -32,28 +35,25 @@ public class Kruskal {
 
         List<Arista<T>> mst = new ArrayList<>();
 
-        // 5. Recorrer las aristas ordenadas
-        for (Arista<T> arista : aristas) {
-            int u = indice.get(arista. obtenerOrigen());
-            int v = indice.get(arista. obtenerDestino());
+        int posicion = 0;
+
+        while (i <= tamanio - 1 && posicion < aristas.size()) {
+        	Arista<T> e = aristas.get(posicion);
+        	posicion++;
+        	
+            int u = indice.get(e.obtenerOrigen());
+            int v = indice.get(e.obtenerDestino());
 
             // Si no están en el mismo conjunto → no forma ciclo
             if (!uf.find(u, v)) {
                 uf.union(u, v);
-                mst.add(arista);
 
-                // Si ya tenemos n-1 aristas, terminamos
-                if (mst.size() == n - 1) {
-                    break;
-                }
+                ET.add(e);
+                i = i + 1;
             }
         }
 
-        if (mst.size() < n - 1) {
-            System.out.println("⚠ El grafo no es conexo. Se obtuvo un bosque de expansión mínima.");
-        }
-
-        return mst;
+        return ET;
     }
 
     /**
